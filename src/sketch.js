@@ -1,5 +1,4 @@
 let bubbles = [];
-let mole;
 let score = document.getElementById('clicked')
 let lives = document.getElementById('lives')
 let scoreCount = 0;
@@ -7,37 +6,34 @@ let livesCount = 5;
 let intervalShow;
 let intervalDelete;
 
-function preload() {
-    mole = loadImage('images/Mole.png');
-}
 
 function setup() {
-    createCanvas(windowWidth, windowHeight/1.10);
+    createCanvas(windowWidth, windowHeight / 1.10);
     let randomTime1 = random(1200, 2500);
     let randomTime2 = random(1509, 2800);
     intervalShow = setInterval(() => {
         let b = new Bubble(random(width), random(height), random(80, 120), 256);
         bubbles.push(b);
-        if(livesCount <= 0) {
+        if (livesCount <= 0) {
             clearInterval()
             clearInterval()
         }
     }, randomTime1);
-    intervalDelete =  setInterval(() => {
+    intervalDelete = setInterval(() => {
         bubbles.shift()
         lives.innerHTML = `Lives: ${livesCount -= 1}`;
-        if(livesCount <= 0) {
-        clearInterval()
-        clearInterval()
+        if (livesCount <= 0) {
+            clearInterval()
+            clearInterval()
         }
     }, randomTime2);
 }
 
 function draw() {
     background(51);
-    if(livesCount <= 0) {
+    if (livesCount <= 0) {
         textSize(40)
-        text('GAME OVER', width/3, height/2)
+        text('GAME OVER', width / 3, height / 2)
         for (let i = 0; i < bubbles.length; i++) {
             bubbles.splice(0, bubbles.length)
         }
@@ -60,7 +56,7 @@ function draw() {
 
 
 function mousePressed() {
-    if(livesCount <= 0) {
+    if (livesCount <= 0) {
         return;
     }
     for (let i = bubbles.length - 1; i >= 0; i--) {
